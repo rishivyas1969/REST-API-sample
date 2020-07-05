@@ -1,0 +1,11 @@
+POST http://localhost:3001/subscribers
+Content-Type: application/json
+
+{
+    "name": "Rishi Vyas",
+    "subscribedChannel": "jomatech"
+}
+
+###
+
+GET http://localhost:3001/subscribers/5f00d3ea30a7081fb8d97e79
