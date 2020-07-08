@@ -4,6 +4,7 @@
 
 
 This is a total BASIC REST-API made by using just EXPRESS.js (bcoz we just need routing here.!!!)
+which stores data in mongoDB and response it in json().
 
 Routes >>
 
