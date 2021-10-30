@@ -1,10 +1,10 @@
 const express = require("express") ;
-const router = express.Router() ;
+const app = express.Router() ;
 const Subscriber = require("../models/subscriber");
 
 
 // get all subs
-router.get("/", async (req,res) => {
+app.get("/", async (req,res) => {
     try {
         const subscribers = await Subscriber.find();
         res.json(subscribers) ;
@@ -14,12 +14,12 @@ router.get("/", async (req,res) => {
 }) ;
 
 // get one sub
-router.get("/:id", getSubscriber, (req,res) => {
+app.get("/:id", getSubscriber, (req,res) => {
     res.status(202).json(res.subscriber) ;
 }) ;
 
 // create sub
-router.post("/", async (req,res) => {
+app.post("/", async (req,res) => {
     const subscriber = new Subscriber({
         name: req.body.name,
         subscribedChannel: req.body.subscribedChannel
@@ -33,7 +33,7 @@ router.post("/", async (req,res) => {
 }) ;
 
 // update sub
-router.patch("/:id", getSubscriber, async (req,res) => {
+app.patch("/:id", getSubscriber, async (req,res) => {
     if(req.body.name != null) {
         res.subscriber.name = req.body.name ;
     }
@@ -51,7 +51,7 @@ router.patch("/:id", getSubscriber, async (req,res) => {
 }) ;
 
 // delete sub
-router.delete("/:id", getSubscriber, async (req, res) => {
+app.delete("/:id", getSubscriber, async (req, res) => {
     try{
         await res.subscriber.remove() ;
         res.json({ message: "Subscriber deleted!"}) ;
@@ -78,4 +78,4 @@ async function getSubscriber( req, res, next) {
     next() ;
 }
 
-module.exports = router ;
+module.exports = app ;
